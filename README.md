@@ -6,6 +6,7 @@
 [![Build Status](https://travis-ci.org/Mary-Tarapuez/apaw-ep-tarapuezmary.svg?branch=develop)](https://travis-ci.org/Mary-Tarapuez/apaw-ep-tarapuezmary)
 [![Quality Gate Status](https://sonarcloud.io/api/project_badges/measure?project=es.upm.miw%3Aapaw-ep-tarapuezmary&metric=alert_status)](https://sonarcloud.io/dashboard?id=es.upm.miw%3Aapaw-ep-tarapuezmary)
 [![BCH compliance](https://bettercodehub.com/edge/badge/Mary-Tarapuez/apaw-ep-tarapuezmary?branch=develop)](https://bettercodehub.com/)
+[![Heroku broken](https://apaw-ep-tarapuezmary.herokuapp.com/system/version-badge)](https://apaw-ep-tarapuezmary.herokuapp.com/swagger-ui.html)
 ### Tecnologías necesarias
 * Java
 * Maven
