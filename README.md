@@ -5,7 +5,7 @@
 ### Estado del código
 [![Build Status](https://travis-ci.org/Mary-Tarapuez/apaw-ep-tarapuezmary.svg?branch=develop)](https://travis-ci.org/Mary-Tarapuez/apaw-ep-tarapuezmary)
 [![Quality Gate Status](https://sonarcloud.io/api/project_badges/measure?project=es.upm.miw%3Aapaw-ep-tarapuezmary&metric=alert_status)](https://sonarcloud.io/dashboard?id=es.upm.miw%3Aapaw-ep-tarapuezmary)
-
+[![BCH compliance](https://bettercodehub.com/edge/badge/Mary-Tarapuez/apaw-ep-tarapuezmary?branch=develop)](https://bettercodehub.com/)
 ### Tecnologías necesarias
 * Java
 * Maven
