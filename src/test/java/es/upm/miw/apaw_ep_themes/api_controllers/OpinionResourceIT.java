@@ -10,6 +10,8 @@ import org.springframework.test.web.reactive.server.WebTestClient;
 import org.springframework.web.reactive.function.BodyInserters;
 
 import java.util.Date;
+import java.util.List;
+
 import static org.junit.jupiter.api.Assertions.*;
 
 
@@ -30,6 +32,5 @@ public class OpinionResourceIT {
         OpinionDto opinionDto = new OpinionDto(null, null);
         this.webTestClient.post().uri(OpinionResource.OPINIONS).body(BodyInserters.fromObject(opinionDto)).exchange().expectStatus().isEqualTo(HttpStatus.BAD_REQUEST);
     }
-
 
 }

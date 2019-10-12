@@ -5,6 +5,8 @@ import es.upm.miw.apaw_ep_themes.dtos.OpinionDto;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @RestController
 @RequestMapping(OpinionResource.OPINIONS)
 public class OpinionResource {
@@ -22,5 +24,10 @@ public class OpinionResource {
     public OpinionDto create(@RequestBody OpinionDto opinionDto) {
         opinionDto.validate();
         return this.opinionBusinessController.create(opinionDto);
+    }
+
+    @GetMapping
+    public List<OpinionDto> readAll(){
+        return this.opinionBusinessController.readAll();
     }
 }
