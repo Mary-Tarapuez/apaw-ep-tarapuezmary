@@ -9,6 +9,9 @@ import es.upm.miw.apaw_ep_themes.exceptions.NotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 
+import java.util.Date;
+import java.util.Optional;
+
 @Controller
 public class DanceCourseBusinessController {
 
@@ -27,7 +30,14 @@ public class DanceCourseBusinessController {
         return new DanceCourseDto(danceCourse);
     }
 
-    public DanceCourseDto readDescription(String id){
-        return new DanceCourseDto(this.danceCourseDao.findById(id).orElseThrow(() -> new NotFoundException("DanceCourse id:" + id)));
+    public DanceCourseDto updatePartial(DanceCourseDto danceCourseDto){
+        Optional<DanceCourse> danceCourse = this.danceCourseDao.findById(danceCourseDto.getId());
+        if(danceCourse.isPresent()) {
+            danceCourse.get().setDueDate(danceCourseDto.getDueDate());
+            this.danceCourseDao.save(danceCourse.get());
+            return new DanceCourseDto(danceCourse.get());
+        }
+        return null;
     }
+
 }
