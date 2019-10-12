@@ -33,4 +33,18 @@ public class OpinionResourceIT {
         this.webTestClient.post().uri(OpinionResource.OPINIONS).body(BodyInserters.fromObject(opinionDto)).exchange().expectStatus().isEqualTo(HttpStatus.BAD_REQUEST);
     }
 
+    @Test
+    void testReadAll(){
+        OpinionDto opinionDto = new OpinionDto("Fanny", new Date("15/10/2019"));
+        this.webTestClient.post().uri(OpinionResource.OPINIONS).body(BodyInserters.fromObject(opinionDto)).exchange().expectStatus().isOk();
+        List<OpinionDto> list = this.webTestClient.get().uri(OpinionResource.OPINIONS).exchange().expectStatus().isOk().expectBodyList(OpinionDto.class).returnResult().getResponseBody();
+        assertTrue(list.size()>0);
+        assertNotNull(list.get(0).getId());
+        assertNotNull(list.get(0).getDescription());
+        assertNotNull(list.get(0).getDateRegister());
+    }
+    @Test
+    void testReadAllException(){
+        this.webTestClient.get().uri(OpinionResource.OPINIONS + OpinionResource.ID + OpinionResource.DESCRIPTION, "no").exchange().expectStatus().isEqualTo(HttpStatus.NOT_FOUND);
+    }
 }

@@ -12,6 +12,8 @@ import java.util.List;
 public class OpinionResource {
 
     static final String OPINIONS = "/opinions";
+    static final String ID = "/{id}";
+    static final String DESCRIPTION = "/description";
 
     private OpinionBusinessController opinionBusinessController;
 
