@@ -40,4 +40,14 @@ public class DanceCourseResourceIT {
                 .body(BodyInserters.fromObject(danceCourseCreationDto))
                 .exchange().expectStatus().isEqualTo(HttpStatus.BAD_REQUEST);
     }
+
+    @Test
+    public void testUpdatePartial() {
+        DanceCourseDto danceCourseDto = new DanceCourseDto();
+        danceCourseDto.setDueDate(new Date("18/10/2019"));
+        this.webTestClient
+                .post().uri(DanceCourseResource.DANCE_COURSES)
+                .body(BodyInserters.fromObject(danceCourseDto))
+                .exchange().expectStatus().isEqualTo(HttpStatus.BAD_REQUEST);
+    }
 }
