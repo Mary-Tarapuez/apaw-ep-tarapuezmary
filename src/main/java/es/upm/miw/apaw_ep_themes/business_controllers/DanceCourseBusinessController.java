@@ -30,9 +30,9 @@ public class DanceCourseBusinessController {
         return new DanceCourseDto(danceCourse);
     }
 
-    public DanceCourseDto updatePartial(DanceCourseDto danceCourseDto){
+    public DanceCourseDto updatePartial(DanceCourseDto danceCourseDto) {
         Optional<DanceCourse> danceCourse = this.danceCourseDao.findById(danceCourseDto.getId());
-        if(danceCourse.isPresent()) {
+        if (danceCourse.isPresent()) {
             danceCourse.get().setDueDate(danceCourseDto.getDueDate());
             this.danceCourseDao.save(danceCourse.get());
             return new DanceCourseDto(danceCourse.get());

@@ -53,8 +53,8 @@ public class OpinionDto {
         this.dateRegister = dateRegister;
     }
 
-    public void validate(){
-        if(description == null || description.isEmpty() || dateRegister == null){
+    public void validate() {
+        if (description == null || description.isEmpty() || dateRegister == null) {
             throw new BadRequestException(Constants.INCOMPLETE_DATA_ERROR);
         }
     }
