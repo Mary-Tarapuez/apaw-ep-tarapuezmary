@@ -13,9 +13,12 @@ public class Music {
 
     private String gender;
 
-    public Music(String title, String gender) {
+    private DanceCourse danceCourse;
+
+    public Music(String title, String gender, DanceCourse danceCourse) {
         this.title = title;
         this.gender = gender;
+        this.danceCourse = danceCourse;
     }
 
     public String getId() {
@@ -42,12 +45,21 @@ public class Music {
         this.gender = gender;
     }
 
+    public DanceCourse getDanceCourse() {
+        return danceCourse;
+    }
+
+    public void setDanceCourse(DanceCourse danceCourse) {
+        this.danceCourse = danceCourse;
+    }
+
     @Override
     public String toString() {
         return "Music{" +
                 "id='" + id + '\'' +
                 ", title='" + title + '\'' +
                 ", gender='" + gender + '\'' +
+                ", danceCourse=" + danceCourse +
                 '}';
     }
 }

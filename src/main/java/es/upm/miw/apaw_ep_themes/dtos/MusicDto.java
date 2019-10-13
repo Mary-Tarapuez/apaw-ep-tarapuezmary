@@ -10,21 +10,13 @@ public class MusicDto {
 
     private String tittle;
 
-    private String gender;
-
     public MusicDto() {
         //empty for framework
-    }
-
-    public MusicDto(String tittle, String gender) {
-        this.tittle = tittle;
-        this.gender = gender;
     }
 
     public MusicDto(Music music) {
         this.id = music.getId();
         this.tittle = music.getTitle();
-        this.gender = music.getGender();
     }
 
     public String getId() {
@@ -43,26 +35,11 @@ public class MusicDto {
         this.tittle = tittle;
     }
 
-    public String getGender() {
-        return gender;
-    }
-
-    public void setGender(String gender) {
-        this.gender = gender;
-    }
-
-    public void validate() {
-        if (tittle == null || tittle.isEmpty() || gender == null || gender.isEmpty()) {
-            throw new BadRequestException(Constants.INCOMPLETE_DATA_ERROR);
-        }
-    }
-
     @Override
     public String toString() {
         return "MusicDto{" +
                 "id='" + id + '\'' +
                 ", tittle='" + tittle + '\'' +
-                ", gender='" + gender + '\'' +
                 '}';
     }
 }
