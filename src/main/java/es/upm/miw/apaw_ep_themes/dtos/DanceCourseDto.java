@@ -25,6 +25,7 @@ public class DanceCourseDto {
         this.startDate = danceCourse.getStartDate();
         this.dueDate = danceCourse.getDueDate();
         this.stateCourse = danceCourse.getStateCourse();
+        this.id = danceCourse.getId();
     }
 
     public String getId() {
