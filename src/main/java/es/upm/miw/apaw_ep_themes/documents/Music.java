@@ -1,6 +1,7 @@
 package es.upm.miw.apaw_ep_themes.documents;
 
 import org.springframework.data.annotation.Id;
+import org.springframework.data.mongodb.core.mapping.DBRef;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 @Document
@@ -13,6 +14,7 @@ public class Music {
 
     private String gender;
 
+    @DBRef
     private DanceCourse danceCourse;
 
     public Music(String title, String gender, DanceCourse danceCourse) {
