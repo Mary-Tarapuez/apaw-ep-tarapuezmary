@@ -7,6 +7,9 @@ import es.upm.miw.apaw_ep_themes.exceptions.NotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 
+import java.util.List;
+import java.util.stream.Collectors;
+
 @Controller
 public class ParticipantBusinessController {
 
@@ -23,8 +26,13 @@ public class ParticipantBusinessController {
         return new ParticipantDto(participant);
     }
 
-    public ParticipantDto readNick(String id) {
-        return new ParticipantDto(this.participantDao.findById(id).orElseThrow(() -> new NotFoundException("Participant id:" + id)));
+    public List<ParticipantDto>
+    findNick(String value) {
+        //return new ParticipantDto(this.participantDao.findById(id).orElseThrow(() -> new NotFoundException("Participant id:" + id)));
+        return this.participantDao.findAll().stream()
+                .filter(participant -> participant.getNick().equals(value))
+                .map(ParticipantDto::new)
+                .collect(Collectors.toList());
     }
 }
 
