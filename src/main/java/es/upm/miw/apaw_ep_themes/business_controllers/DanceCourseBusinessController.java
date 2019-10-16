@@ -36,7 +36,7 @@ public class DanceCourseBusinessController {
             this.danceCourseDao.save(danceCourse.get());
             return new DanceCourseDto(danceCourse.get());
         }
-        return null;
+        return new DanceCourseDto();
     }
 
     private DanceCourse findDanceCourseBYAssured(String id) {

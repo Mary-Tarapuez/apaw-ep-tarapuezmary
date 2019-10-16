@@ -11,6 +11,8 @@ import org.springframework.web.bind.annotation.*;
 public class DanceCourseResource {
 
     public static final String DANCE_COURSES = "/danceCourses";
+    static final String ID_ID = "/{id}";
+    static final String DESCRIPTION = "/description";
 
     private DanceCourseBusinessController danceCourseBusinessController;
 
@@ -29,4 +31,12 @@ public class DanceCourseResource {
     public DanceCourseDto updatePartial(@RequestBody DanceCourseDto danceCourseDto) {
         return this.danceCourseBusinessController.updatePartial(danceCourseDto);
     }
+
+    @PutMapping(value =  ID_ID + DESCRIPTION)
+    public void updateDanceCourse(@PathVariable String id, @RequestBody DanceCourseDto danceCourseDto){
+        danceCourseDto.validateDescription();
+        this.danceCourseBusinessController.updateDescription(id, danceCourseDto.getDescription());
+    }
+
+
 }
