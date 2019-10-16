@@ -5,6 +5,7 @@ import es.upm.miw.apaw_ep_themes.documents.DanceCourse;
 import es.upm.miw.apaw_ep_themes.documents.Room;
 import es.upm.miw.apaw_ep_themes.dtos.DanceCourseCreationDto;
 import es.upm.miw.apaw_ep_themes.dtos.DanceCourseDto;
+import es.upm.miw.apaw_ep_themes.exceptions.NotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 
@@ -35,7 +36,16 @@ public class DanceCourseBusinessController {
             this.danceCourseDao.save(danceCourse.get());
             return new DanceCourseDto(danceCourse.get());
         }
-        return null;
+        return new DanceCourseDto();
     }
 
+    private DanceCourse findDanceCourseBYAssured(String id) {
+        return this.danceCourseDao.findById(id).orElseThrow(() -> new NotFoundException("DanceCourse id:" + id));
+    }
+
+    public void updateDescription(String id, String description) {
+        DanceCourse danceCourse = this.findDanceCourseBYAssured(id);
+        danceCourse.setDescription(description);
+        this.danceCourseDao.save(danceCourse);
+    }
 }

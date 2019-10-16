@@ -1,6 +1,8 @@
 package es.upm.miw.apaw_ep_themes.dtos;
 
 import es.upm.miw.apaw_ep_themes.documents.DanceCourse;
+import es.upm.miw.apaw_ep_themes.exceptions.BadRequestException;
+import es.upm.miw.apaw_ep_themes.utils.Constants;
 
 import java.util.Date;
 
@@ -68,6 +70,11 @@ public class DanceCourseDto {
         this.stateCourse = stateCourse;
     }
 
+    public void validateDescription() {
+        if (this.description == null || this.description.isEmpty()) {
+            throw new BadRequestException(Constants.INCOMPLETE_DATA_ERROR);
+        }
+    }
     @Override
     public String toString() {
         return "DanceCourseDto{" +

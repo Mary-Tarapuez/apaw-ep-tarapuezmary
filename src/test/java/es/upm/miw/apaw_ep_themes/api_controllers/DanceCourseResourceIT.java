@@ -50,4 +50,30 @@ public class DanceCourseResourceIT {
                 .body(BodyInserters.fromObject(danceCourseDto))
                 .exchange().expectStatus().isEqualTo(HttpStatus.BAD_REQUEST);
     }
+
+   private DanceCourseDto createDanceCourse(String description) {
+        DanceCourseCreationDto danceCourseCreationDto = new DanceCourseCreationDto(description, new Date("12/10/2019"), new Date("16/10/2019"), Boolean.TRUE, 2, 1);
+       DanceCourseDto danceCourseDto = this.webTestClient
+               .post().uri(DanceCourseResource.DANCE_COURSES)
+               .body(BodyInserters.fromObject(danceCourseCreationDto))
+               .exchange()
+               .expectStatus().isOk()
+               .expectBody(DanceCourseDto.class)
+               .returnResult().getResponseBody();
+       return danceCourseDto;
+    }
+
+
+    @Test
+    void testPutDescription() {
+        String id = createDanceCourse("beginner").getId();
+        DanceCourseDto danceCourseDto = new DanceCourseDto();
+        danceCourseDto.setDescription("newBeginner");
+        this.webTestClient
+                .put().uri(DanceCourseResource.DANCE_COURSES + DanceCourseResource.ID_ID + DanceCourseResource.DESCRIPTION, id)
+                .body(BodyInserters.fromObject(danceCourseDto))
+                .exchange()
+                .expectStatus().isOk();
+        assertEquals("newBeginner", danceCourseDto.getDescription());
+    }
 }
