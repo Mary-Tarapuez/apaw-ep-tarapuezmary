@@ -1,7 +1,6 @@
 package es.upm.miw.apaw_ep_themes.api_controllers;
 
 import es.upm.miw.apaw_ep_themes.ApiTestConfig;
-import es.upm.miw.apaw_ep_themes.documents.DanceCourse;
 import es.upm.miw.apaw_ep_themes.dtos.DanceCourseCreationDto;
 import es.upm.miw.apaw_ep_themes.dtos.DanceCourseDto;
 import es.upm.miw.apaw_ep_themes.dtos.MusicCreateDto;

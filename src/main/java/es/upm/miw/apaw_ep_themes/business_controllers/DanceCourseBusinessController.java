@@ -5,11 +5,9 @@ import es.upm.miw.apaw_ep_themes.documents.DanceCourse;
 import es.upm.miw.apaw_ep_themes.documents.Room;
 import es.upm.miw.apaw_ep_themes.dtos.DanceCourseCreationDto;
 import es.upm.miw.apaw_ep_themes.dtos.DanceCourseDto;
-import es.upm.miw.apaw_ep_themes.exceptions.NotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 
-import java.util.Date;
 import java.util.Optional;
 
 @Controller

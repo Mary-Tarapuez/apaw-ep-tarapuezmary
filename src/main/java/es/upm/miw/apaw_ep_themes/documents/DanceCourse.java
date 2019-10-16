@@ -3,7 +3,9 @@ package es.upm.miw.apaw_ep_themes.documents;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 @Document
 public class DanceCourse {
@@ -21,12 +23,15 @@ public class DanceCourse {
 
     private Room room;
 
+    private List<Participant> participant;
+
     public DanceCourse(String description, Date startDate, Date dueDate, Boolean stateCourse, Room room) {
         this.description = description;
         this.startDate = startDate;
         this.dueDate = dueDate;
         this.stateCourse = stateCourse;
         this.room = room;
+        this.participant = new ArrayList<>();
 
     }
 
@@ -76,6 +81,14 @@ public class DanceCourse {
 
     public void setRoom(Room room) {
         this.room = room;
+    }
+
+    public List<Participant> getParticipant() {
+        return participant;
+    }
+
+    public void setParticipant(List<Participant> participant) {
+        this.participant = participant;
     }
 
     @Override

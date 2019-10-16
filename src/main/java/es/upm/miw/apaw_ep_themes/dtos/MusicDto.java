@@ -1,8 +1,6 @@
 package es.upm.miw.apaw_ep_themes.dtos;
 
 import es.upm.miw.apaw_ep_themes.documents.Music;
-import es.upm.miw.apaw_ep_themes.exceptions.BadRequestException;
-import es.upm.miw.apaw_ep_themes.utils.Constants;
 
 public class MusicDto {
 
