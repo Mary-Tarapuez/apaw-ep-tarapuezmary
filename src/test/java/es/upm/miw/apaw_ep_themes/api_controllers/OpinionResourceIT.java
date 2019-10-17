@@ -47,4 +47,17 @@ public class OpinionResourceIT {
     void testReadAllException(){
         this.webTestClient.get().uri(OpinionResource.OPINIONS + OpinionResource.ID + OpinionResource.DESCRIPTION, "no").exchange().expectStatus().isEqualTo(HttpStatus.NOT_FOUND);
     }
+    void testDelete(){
+        String idOpinion = this.webTestClient
+                .post().uri(OpinionResource.OPINIONS)
+                .body(BodyInserters.fromObject(new OpinionDto("Description", new Date("15/10/2019"))))
+                .exchange()
+                .expectStatus().isOk()
+                .expectBody(OpinionDto.class)
+                .returnResult().getResponseBody().getId();
+        this.webTestClient
+                .delete().uri(OpinionResource.OPINIONS + OpinionResource.ID,idOpinion)
+                .exchange()
+                .expectStatus().isOk();
+    }
 }
