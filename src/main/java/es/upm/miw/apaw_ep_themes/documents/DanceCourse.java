@@ -83,6 +83,10 @@ public class DanceCourse {
         this.room = room;
     }
 
+    public List<Participant> getParticipant() {
+        return participant;
+    }
+
     @Override
     public String toString() {
         return "DanceCourse{" +

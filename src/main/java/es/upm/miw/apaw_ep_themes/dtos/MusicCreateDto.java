@@ -1,9 +1,10 @@
 package es.upm.miw.apaw_ep_themes.dtos;
 
 import es.upm.miw.apaw_ep_themes.exceptions.BadRequestException;
-import es.upm.miw.apaw_ep_themes.utils.Constants;
 
 public class MusicCreateDto {
+
+    public static String INCOMPLETE_DATA_ERROR = "Incomplete Data";
 
     private String tittle;
     private String gender;
@@ -45,7 +46,7 @@ public class MusicCreateDto {
 
     public void validate() {
         if (this.tittle == null || this.tittle.isEmpty() || this.gender == null || this.gender.isEmpty() || this.danceCourseId == null || this.danceCourseId.isEmpty()) {
-            throw new BadRequestException(Constants.INCOMPLETE_DATA_ERROR);
+            throw new BadRequestException(INCOMPLETE_DATA_ERROR);
         }
     }
 

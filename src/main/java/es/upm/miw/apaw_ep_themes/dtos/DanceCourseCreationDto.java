@@ -1,11 +1,12 @@
 package es.upm.miw.apaw_ep_themes.dtos;
 
 import es.upm.miw.apaw_ep_themes.exceptions.BadRequestException;
-import es.upm.miw.apaw_ep_themes.utils.Constants;
 
 import java.util.Date;
 
 public class DanceCourseCreationDto {
+
+    public static String INCOMPLETE_DATA_ERROR = "Incomplete Data";
 
     private String description;
 
@@ -82,7 +83,7 @@ public class DanceCourseCreationDto {
 
     public void validate() {
         if (this.description == null || this.description.isEmpty() || this.startDate == null || this.dueDate == null || this.stateCourse == null || this.number == 0 || this.floor == 0) {
-            throw new BadRequestException(Constants.INCOMPLETE_DATA_ERROR);
+            throw new BadRequestException(INCOMPLETE_DATA_ERROR);
         }
     }
 

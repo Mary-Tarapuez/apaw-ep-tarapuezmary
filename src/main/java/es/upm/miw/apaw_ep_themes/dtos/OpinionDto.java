@@ -2,11 +2,12 @@ package es.upm.miw.apaw_ep_themes.dtos;
 
 import es.upm.miw.apaw_ep_themes.documents.Opinion;
 import es.upm.miw.apaw_ep_themes.exceptions.BadRequestException;
-import es.upm.miw.apaw_ep_themes.utils.Constants;
 
 import java.util.Date;
 
 public class OpinionDto {
+
+    public static String INCOMPLETE_DATA_ERROR = "Incomplete Data";
 
     private String id;
 
@@ -55,7 +56,7 @@ public class OpinionDto {
 
     public void validate() {
         if (description == null || description.isEmpty() || dateRegister == null) {
-            throw new BadRequestException(Constants.INCOMPLETE_DATA_ERROR);
+            throw new BadRequestException(INCOMPLETE_DATA_ERROR);
         }
     }
 
