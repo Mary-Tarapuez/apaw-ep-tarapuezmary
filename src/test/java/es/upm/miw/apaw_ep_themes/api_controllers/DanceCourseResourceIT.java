@@ -1,8 +1,13 @@
 package es.upm.miw.apaw_ep_themes.api_controllers;
 
 import es.upm.miw.apaw_ep_themes.ApiTestConfig;
+import es.upm.miw.apaw_ep_themes.daos.DanceCourseDao;
+import es.upm.miw.apaw_ep_themes.documents.DanceCourse;
+import es.upm.miw.apaw_ep_themes.documents.DanceCourseBuilder;
+import es.upm.miw.apaw_ep_themes.documents.Room;
 import es.upm.miw.apaw_ep_themes.dtos.DanceCourseCreationDto;
 import es.upm.miw.apaw_ep_themes.dtos.DanceCourseDto;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -18,6 +23,19 @@ public class DanceCourseResourceIT {
 
     @Autowired
     private WebTestClient webTestClient;
+
+    @Autowired
+    private DanceCourseDao danceCourseDao;
+    private DanceCourse danceCourse;
+    private Room room;
+
+    @BeforeEach
+    void before() {
+        Room room = new Room(2, 1);
+        DanceCourse danceCourse = new DanceCourseBuilder().setDescription("Beginner").setStarDate(new Date("20/10/2019")).setDueDate(new Date("24/10/2019")).setStateCourse(Boolean.TRUE).setRoom(room).build();
+        this.danceCourse = danceCourse;
+        this.danceCourseDao.save(danceCourse);
+    }
 
     @Test
     void testCreate() {
@@ -51,16 +69,16 @@ public class DanceCourseResourceIT {
                 .exchange().expectStatus().isEqualTo(HttpStatus.BAD_REQUEST);
     }
 
-   private DanceCourseDto createDanceCourse(String description) {
+    private DanceCourseDto createDanceCourse(String description) {
         DanceCourseCreationDto danceCourseCreationDto = new DanceCourseCreationDto(description, new Date("12/10/2019"), new Date("16/10/2019"), Boolean.TRUE, 2, 1);
-       DanceCourseDto danceCourseDto = this.webTestClient
-               .post().uri(DanceCourseResource.DANCE_COURSES)
-               .body(BodyInserters.fromObject(danceCourseCreationDto))
-               .exchange()
-               .expectStatus().isOk()
-               .expectBody(DanceCourseDto.class)
-               .returnResult().getResponseBody();
-       return danceCourseDto;
+        DanceCourseDto danceCourseDto = this.webTestClient
+                .post().uri(DanceCourseResource.DANCE_COURSES)
+                .body(BodyInserters.fromObject(danceCourseCreationDto))
+                .exchange()
+                .expectStatus().isOk()
+                .expectBody(DanceCourseDto.class)
+                .returnResult().getResponseBody();
+        return danceCourseDto;
     }
 
 
