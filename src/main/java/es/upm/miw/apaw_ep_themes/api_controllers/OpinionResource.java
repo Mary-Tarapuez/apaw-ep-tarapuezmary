@@ -32,4 +32,9 @@ public class OpinionResource {
     public List<OpinionDto> readAll(){
         return this.opinionBusinessController.readAll();
     }
+
+    @DeleteMapping(value = ID)
+    public void delete(String id){
+        this.opinionBusinessController.delete(id);
+    }
 }

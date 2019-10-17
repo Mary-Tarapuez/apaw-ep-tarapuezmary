@@ -3,6 +3,7 @@ package es.upm.miw.apaw_ep_themes.business_controllers;
 import es.upm.miw.apaw_ep_themes.daos.OpinionDao;
 import es.upm.miw.apaw_ep_themes.documents.Opinion;
 import es.upm.miw.apaw_ep_themes.dtos.OpinionDto;
+import es.upm.miw.apaw_ep_themes.exceptions.NotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 
@@ -30,4 +31,8 @@ public class OpinionBusinessController {
         return opinions.stream().map(OpinionDto::new).collect(Collectors.toList());
     }
 
+    public void delete(String id){
+        Opinion opinion = this.opinionDao.findById(id).orElseThrow(()-> new NotFoundException("Opinion not found"));
+        this.opinionDao.delete(opinion);
+    }
 }
