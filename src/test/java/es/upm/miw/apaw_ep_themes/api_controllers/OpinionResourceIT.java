@@ -2,13 +2,19 @@ package es.upm.miw.apaw_ep_themes.api_controllers;
 
 
 import es.upm.miw.apaw_ep_themes.ApiTestConfig;
+import es.upm.miw.apaw_ep_themes.business_controllers.OpinionBusinessController;
+import es.upm.miw.apaw_ep_themes.daos.OpinionDao;
+import es.upm.miw.apaw_ep_themes.documents.Opinion;
 import es.upm.miw.apaw_ep_themes.dtos.OpinionDto;
+import es.upm.miw.apaw_ep_themes.exceptions.NotFoundException;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.test.web.reactive.server.WebTestClient;
 import org.springframework.web.reactive.function.BodyInserters;
+import reactor.test.StepVerifier;
 
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -21,9 +27,20 @@ public class OpinionResourceIT {
     @Autowired
     private WebTestClient webTestClient;
 
+    @Autowired
+    private OpinionBusinessController opinionBusinessController;
+
+    @Autowired
+    private OpinionDao opinionDao;
+
     @Test
     void testCreate(){
-        OpinionDto opinionDto = this.webTestClient.post().uri(OpinionResource.OPINIONS).body(BodyInserters.fromObject(new OpinionDto("Description", new Date("15/10/2019")))).exchange().expectStatus().isOk().expectBody(OpinionDto.class).returnResult().getResponseBody();
+        OpinionDto opinionDto = this.webTestClient
+                .post().uri(OpinionResource.OPINIONS)
+                .body(BodyInserters.fromObject(new OpinionDto("Description", new Date("15/10/2019"))))
+                .exchange().expectStatus().isOk()
+                .expectBody(OpinionDto.class)
+                .returnResult().getResponseBody();
         assertEquals("Description", opinionDto.getDescription());
     }
 
@@ -59,5 +76,21 @@ public class OpinionResourceIT {
                 .delete().uri(OpinionResource.OPINIONS + OpinionResource.ID,idOpinion)
                 .exchange()
                 .expectStatus().isOk();
+    }
+
+    @Test
+    void testPublisher(){
+
+      OpinionDto opinionDto = new OpinionDto("Teen", new Date("18/10/2019"));
+        String id = this.webTestClient.post().uri(OpinionResource.OPINIONS)
+                .body(BodyInserters.fromObject(opinionDto))
+                .exchange().expectStatus().isOk()
+                .expectBody(OpinionDto.class).returnResult().getResponseBody().getId();
+
+        Opinion opinion = new  Opinion("Tenn", new Date ("19/10/2019"));
+        this.opinionDao.save(opinion);
+        Opinion opinionData = this.opinionDao.findById(opinion.getId()).orElseThrow(()->new NotFoundException("Opinion not found"));
+        StepVerifier.create(opinionBusinessController.publisher()).then(()-> opinionBusinessController.create(new OpinionDto("description",new Date("19/10/2019"))))
+                .expectNext("New Opinion is created").thenCancel().verify();
     }
 }
