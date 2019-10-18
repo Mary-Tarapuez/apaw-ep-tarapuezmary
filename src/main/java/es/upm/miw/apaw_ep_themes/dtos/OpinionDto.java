@@ -7,8 +7,6 @@ import java.util.Date;
 
 public class OpinionDto {
 
-    public static String INCOMPLETE_DATA_ERROR = "Incomplete Data";
-
     private String id;
 
     private String description;
@@ -56,7 +54,7 @@ public class OpinionDto {
 
     public void validate() {
         if (description == null || description.isEmpty() || dateRegister == null) {
-            throw new BadRequestException(INCOMPLETE_DATA_ERROR);
+            throw new BadRequestException("Incomplete Data");
         }
     }
 

@@ -6,7 +6,6 @@ import es.upm.miw.apaw_ep_themes.exceptions.BadRequestException;
 import java.util.Date;
 
 public class DanceCourseDto {
-    public static String INCOMPLETE_DATA_ERROR = "Incomplete Data";
 
     private String id;
 
@@ -72,7 +71,7 @@ public class DanceCourseDto {
 
     public void validateDescription() {
         if (this.description == null || this.description.isEmpty()) {
-            throw new BadRequestException(INCOMPLETE_DATA_ERROR);
+            throw new BadRequestException("Incomplete Data");
         }
     }
 

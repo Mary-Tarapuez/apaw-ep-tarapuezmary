@@ -20,7 +20,7 @@ public class DanceCourseBuilder {
     }
 
     public DanceCourseBuilder setStarDate(Date starDate){
-        this.startDate = startDate;
+        this.startDate = starDate;
         return this;
     }
 

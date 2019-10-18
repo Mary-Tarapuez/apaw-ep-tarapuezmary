@@ -7,8 +7,6 @@ import java.util.Date;
 
 public class ParticipantDto {
 
-    public static String INCOMPLETE_DATA_ERROR = "Incomplete Data";
-
     private String id;
 
     private String nick;
@@ -68,7 +66,7 @@ public class ParticipantDto {
 
     public void validate() {
         if (nick == null || nick.isEmpty() || fullName == null || fullName.isEmpty() || birthDate == null) {
-            throw new BadRequestException(INCOMPLETE_DATA_ERROR);
+            throw new BadRequestException("Incomplete Data");
         }
     }
 

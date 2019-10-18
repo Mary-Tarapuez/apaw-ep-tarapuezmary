@@ -32,11 +32,10 @@ public class DanceCourseResource {
         return this.danceCourseBusinessController.updatePartial(danceCourseDto);
     }
 
-    @PutMapping(value =  ID_ID + DESCRIPTION)
-    public void updateDanceCourse(@PathVariable String id, @RequestBody DanceCourseDto danceCourseDto){
+    @PutMapping(value = ID_ID + DESCRIPTION)
+    public void updateDanceCourse(@PathVariable String id, @RequestBody DanceCourseDto danceCourseDto) {
         danceCourseDto.validateDescription();
         this.danceCourseBusinessController.updateDescription(id, danceCourseDto.getDescription());
     }
-
 
 }
