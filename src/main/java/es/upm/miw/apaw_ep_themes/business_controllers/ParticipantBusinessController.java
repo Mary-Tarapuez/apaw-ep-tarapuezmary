@@ -25,8 +25,7 @@ public class ParticipantBusinessController {
         return new ParticipantDto(participant);
     }
 
-    public List<ParticipantDto>
-    findNick(String value) {
+    public List<ParticipantDto> findNick(String value) {
         return this.participantDao.findAll().stream()
                 .filter(participant -> participant.getNick().equals(value))
                 .map(ParticipantDto::new)

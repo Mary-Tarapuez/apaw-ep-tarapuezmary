@@ -41,7 +41,8 @@ public class DanceCourseResourceIT {
     void testCreate() {
         DanceCourseCreationDto danceCourseCreationDto = new DanceCourseCreationDto("Beginner", new Date("12/10/2019"), new Date("16/10/2019"), Boolean.TRUE, 2, 1);
         DanceCourseDto danceCourseDto = this.webTestClient
-                .post().uri(DanceCourseResource.DANCE_COURSES)
+                .post().uri(DanceCourseResource.DANCE_COURSES
+                )
                 .body(BodyInserters.fromObject(danceCourseCreationDto))
                 .exchange()
                 .expectStatus().isOk()
@@ -72,7 +73,7 @@ public class DanceCourseResourceIT {
     private DanceCourseDto createDanceCourse(String description) {
         DanceCourseCreationDto danceCourseCreationDto = new DanceCourseCreationDto(description, new Date("12/10/2019"), new Date("16/10/2019"), Boolean.TRUE, 2, 1);
         DanceCourseDto danceCourseDto = this.webTestClient
-                .post().uri(DanceCourseResource.DANCE_COURSES)
+                .post().uri(DanceCourseResource.DANCE_COURSES )
                 .body(BodyInserters.fromObject(danceCourseCreationDto))
                 .exchange()
                 .expectStatus().isOk()
@@ -80,7 +81,6 @@ public class DanceCourseResourceIT {
                 .returnResult().getResponseBody();
         return danceCourseDto;
     }
-
 
     @Test
     void testPutDescription() {

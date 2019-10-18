@@ -6,8 +6,6 @@ import java.util.Date;
 
 public class DanceCourseCreationDto {
 
-    public static String INCOMPLETE_DATA_ERROR = "Incomplete Data";
-
     private String description;
 
     private Date startDate;
@@ -83,7 +81,7 @@ public class DanceCourseCreationDto {
 
     public void validate() {
         if (this.description == null || this.description.isEmpty() || this.startDate == null || this.dueDate == null || this.stateCourse == null || this.number == 0 || this.floor == 0) {
-            throw new BadRequestException(INCOMPLETE_DATA_ERROR);
+            throw new BadRequestException("Incomplete Data");
         }
     }
 
